@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+
+#TextUiContainer {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9996;
+    display: none;
+}
+
+.TextUi {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 10px 15px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ff880050;
+
+}
+
+.TextUiElement {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: rgba(255, 136, 0, 0.2);
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 12px;
+    border: 1px solid #ff8800;
+    z-index: 9995;
+}
+
+.TextUiLine {
+    width: 2px;
+    height: 20px;
+    background-color: #ff8800;
+    margin-right: 12px;
+}
+
+.TextUiText {
+    color: rgb(200, 200, 200);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.culoaremisto {
+    position: absolute;
+    width: 65px;
+    height: 150px;
+    top: 20px;
+    left: -25px;
+    background-color: #ff8800;
+    filter: blur(30px);
+    transform: rotate(135deg);
+    pointer-events: none;
+    opacity: 1;
+    z-index: 9994;
+}

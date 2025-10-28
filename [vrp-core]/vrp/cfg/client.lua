@@ -28,7 +28,7 @@ cfg.controls = {
     right = {3,175},
     select = {3,176},
     cancel = {3,177},
-    open = {3,27} -- INPUT_PHONE, open general menu
+    open = {3,311} -- INPUT_PHONE, open general menu (default: K)
   },
   request = {
     yes = {1,166}, -- Michael, F5

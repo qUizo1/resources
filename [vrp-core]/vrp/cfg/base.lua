@@ -19,7 +19,7 @@ cfg.load_duration = 30 -- seconds, player duration in loading mode at the first 
 cfg.load_delay = 60 -- milliseconds, delay the tunnel communication when in loading mode
 cfg.global_delay = 0 -- milliseconds, delay the tunnel communication when not in loading mode
 
-cfg.max_characters = 5 -- maximum number of characters per user
+cfg.max_characters = 1 -- maximum number of characters per user
 cfg.character_select_delay = 60 -- minimum number of seconds between character selects, at least 30 seconds is recommended
 
 -- If enabled, will not use the IP address to identify players (recommended, solve same IP issue; other identifiers should be available).

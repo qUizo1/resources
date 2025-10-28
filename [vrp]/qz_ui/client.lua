@@ -10,11 +10,11 @@ local pvRP = {}
 pvRP.loadScript = module
 Proxy.addInterface("vRP", pvRP)
 
-local cfg = module("qz_ui", "cfg/cfg")            -- Optional, Change vrp_Test to match folder name
+local cfg = module("qz_ui", "cfg/cfg")            
 
-local UI = class("UI", vRP.Extension)            -- Class Name, Can be changed to anything (match with server class name to make things easier
+local UI = class("UI", vRP.Extension)            
 
-function UI:__construct()                            -- Change test to match Class Name
+function UI:__construct()                         
     vRP.Extension.__construct(self)
 end
 

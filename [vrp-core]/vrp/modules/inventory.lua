@@ -207,7 +207,6 @@ local function menu_inventory_item(self)
   end
 
   vRP.EXT.GUI:registerMenuBuilder("inventory.item", function(menu)
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     local user = menu.user
     local citem = self:computeItem(menu.data.fullid)
@@ -234,7 +233,6 @@ local function menu_inventory(self)
 
   vRP.EXT.GUI:registerMenuBuilder("inventory", function(menu)
     menu.title = lang.inventory.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     local user = menu.user
 
@@ -375,7 +373,6 @@ local function menu_chest(self)
 
   vRP.EXT.GUI:registerMenuBuilder("chest", function(menu)
     menu.title = lang.inventory.chest.title()
-    menu.css.header_color="rgba(0,255,125,0.75)"
 
     menu:addOption(lang.inventory.chest.take.title(), m_take)
     menu:addOption(lang.inventory.chest.put.title(), m_put)

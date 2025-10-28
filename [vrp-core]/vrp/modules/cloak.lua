@@ -55,7 +55,6 @@ local function menu_cloakroom(self)
 
   vRP.EXT.GUI:registerMenuBuilder("cloakroom", function(menu)
     menu.title = lang.cloakroom.title({menu.data.type})
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     -- add cloaks
     for k,v in pairs(menu.data.cloaks) do

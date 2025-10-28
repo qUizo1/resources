@@ -224,7 +224,6 @@ local function menu_phone_directory(self)
 
   vRP.EXT.GUI:registerMenuBuilder("phone.directory", function(menu)
     menu.title = lang.phone.directory.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     menu:addOption(lang.phone.directory.add.title(), m_add)
 
@@ -280,7 +279,6 @@ local function menu_phone_service(self)
 
   vRP.EXT.GUI:registerMenuBuilder("phone.service", function(menu)
     menu.title = lang.phone.service.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     for k,service in pairs(self.cfg.services) do
       menu:addOption(k, m_service, nil, k)
@@ -321,7 +319,6 @@ local function menu_phone_announce(self)
 
   vRP.EXT.GUI:registerMenuBuilder("phone.announce", function(menu)
     menu.title = lang.phone.announce.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     for k,announce in pairs(self.cfg.announces) do
       if not announce.permission or menu.user:hasPermission(announce.permission) then

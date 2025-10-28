@@ -33,7 +33,7 @@ html, body {
   position: absolute;
   font-weight: bold;
   padding: 9px;
-  right: 23vw; /* Changed from left:73vw */
+  right: 20vw; /* Changed from left:73vw */
   max-width: 500px;
   text-align: right; /* Added to align text to the right */
 }

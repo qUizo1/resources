@@ -86,7 +86,6 @@ local function menu_cityhall(self)
 
   vRP.EXT.GUI:registerMenuBuilder("cityhall", function(menu)
     menu.title = lang.identity.cityhall.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     menu:addOption(lang.identity.cityhall.new_identity.title(), m_new_identity, lang.identity.cityhall.new_identity.description({self.cfg.new_identity_cost}))
   end)
@@ -96,7 +95,6 @@ end
 local function menu_identity(self)
   vRP.EXT.GUI:registerMenuBuilder("identity", function(menu)
     menu.title = lang.identity.title()
-    menu.css.header_color="rgba(0,125,255,0.75)"
 
     local identity = self:getIdentity(menu.data.cid)
 

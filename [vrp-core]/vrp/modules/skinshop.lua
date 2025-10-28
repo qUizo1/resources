@@ -176,7 +176,6 @@ local function menu_skinshop_part(self)
     local user = menu.user
 
     menu.title = menu.data.title
-    menu.css.header_color="rgba(0,255,125,0.75)"
 
     local part = menu.data.part
     local args = splitString(part, ":")
@@ -280,7 +279,6 @@ local function menu_skinshop(self)
     local user = menu.user
 
     menu.title = lang.skinshop.title()
-    menu.css.header_color="rgba(0,255,125,0.75)"
 
     if not menu.old_custom then -- first time opening the menu
       -- notify player if wearing a uniform

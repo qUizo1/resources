@@ -65,7 +65,6 @@ function ATM:__construct()
 
   vRP.EXT.GUI:registerMenuBuilder("ATM", function(menu)
     menu.title = lang.atm.title()
-    menu.css.header_color="rgba(0,255,125,0.75)"
 
     menu:addOption(lang.atm.info.title(), nil, lang.atm.info.bank({menu.user:getBank()}))
     menu:addOption(lang.atm.deposit.title(),atm_choice_deposit,lang.atm.deposit.description())

@@ -31,8 +31,8 @@ local modules = {
   home_components = false,
   police = true,
   radio = true,
-  ped_blacklist = true,
-  veh_blacklist = true,
+  ped_blacklist = false,
+  veh_blacklist = false,
   edible = true,
   warp = true,
   --

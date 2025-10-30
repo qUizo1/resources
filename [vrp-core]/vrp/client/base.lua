@@ -199,10 +199,20 @@ function Base:getNearestPlayer(radius)
 end
 
 -- GTA 5 text notification
-function Base:notify(msg)
-  AddTextEntry("MESSAGE_VRP", msg)
-  SetNotificationTextEntry("MESSAGE_VRP")
-  DrawNotification(true, false)
+function Base:notify(msg,type,title,time)
+    local function clearColors(str)
+      local idf = string.match(str, "~.~")
+      while idf do
+          str = str:gsub(idf, "")
+          idf = string.match(str, "~.~")
+      end
+      return str
+    end
+    
+    msg = clearColors(msg)
+    title = title or "Notificare"
+    time = time or 5000
+    TriggerEvent("hud:notify", title, msg, time)
 end
 
 -- GTA 5 picture notification

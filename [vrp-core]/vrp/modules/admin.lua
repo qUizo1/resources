@@ -203,7 +203,11 @@ local function menu_admin(self)
   end
 
   local function m_noclip(menu)
-    self.remote._toggleNoclip(menu.user.source)
+    self.remote._SetNoclipActive(menu.user.source)
+  end
+
+  local function m_godmode(menu)
+    self.remote._toggleGodmode(menu.user.source)
   end
 
   vRP.EXT.GUI:registerMenuBuilder("admin", function(menu)
@@ -227,20 +231,11 @@ local function menu_admin(self)
     if user:hasPermission("player.noclip") then
       menu:addOption(lang.admin.noclip.title(), m_noclip)
     end
+    if user:hasPermission("player.noclip") then
+      menu:addOption("GodMode", m_godmode)
+    end
     if user:hasPermission("player.coords") then
       menu:addOption(lang.admin.coords.title(), m_coords)
-    end
-    if user:hasPermission("player.custom_emote") then
-      menu:addOption(lang.admin.custom_upper_emote.title(), m_emote, nil, true)
-    end
-    if user:hasPermission("player.custom_emote") then
-      menu:addOption(lang.admin.custom_full_emote.title(), m_emote, nil, false)
-    end
-    if user:hasPermission("player.custom_emote") then
-      menu:addOption(lang.admin.custom_emote_task.title(), m_emote_task)
-    end
-    if user:hasPermission("player.custom_sound") then
-      menu:addOption(lang.admin.custom_sound.title(), m_sound)
     end
   end)
 end

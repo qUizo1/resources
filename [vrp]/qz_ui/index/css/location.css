@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+#location-ui {
+    position: fixed;
+    top: 790px;
+    left: 30px;
+    z-index: 9996;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+#location-ui.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.location-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 7px;
+    padding: 10px 15px;
+    min-width: 220px;
+    border: 1px solid #ff880050;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.location-marker {
+    color: #ff8800;
+    font-size: 18px;
+    margin-right: 12px;
+    text-shadow: 0 0 10px #ff8800be;
+}
+
+.location-line {
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, transparent, #ff8800, transparent);
+    margin-right: 12px;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.location-area {
+    color: #ff8800;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 136, 0, 0.5);
+    white-space: nowrap;
+}
+
+.location-street {
+    color: rgb(240, 240, 240);
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+.pl3 {
+    position: absolute;
+    width: 65px;
+    height: 150px;
+    top: 30px;
+    left: -35px;
+    background-color: #ff8800;
+    filter: blur(30px);
+    transform: rotate(135deg);
+}

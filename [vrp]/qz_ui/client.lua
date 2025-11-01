@@ -9,9 +9,9 @@ local pvRP = {}
 pvRP.loadScript = module
 Proxy.addInterface("vRP", pvRP)        
 
-local UI = class("UI", vRP.Extension)            
+local QZUI = class("QZUI", vRP.Extension)
 
-function UI:__construct()                         
+function QZUI:__construct()                         
     vRP.Extension.__construct(self)
 end
 
@@ -305,7 +305,7 @@ RegisterCommand("testprogress", function(source, args, raw)
 end, false)
 
 
-vRP:registerExtension(UI)       
+vRP:registerExtension(QZUI)       
 
 --TriggerEvent("hud:notify", title, msg, time)
 --TriggerEvent("hud:admin", -1, title, msg, duration)

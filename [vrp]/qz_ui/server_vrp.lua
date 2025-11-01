@@ -1,6 +1,6 @@
-local UI = class("UI", vRP.Extension)
+local QZUI = class("QZUI", vRP.Extension)
 
-function UI:__construct()
+function QZUI:__construct()
     vRP.Extension.__construct(self)
 end
 
@@ -31,4 +31,4 @@ AddEventHandler("vRP:playerSpawn", function(user_id, source, first_spawn)
     end
 end)
 
-vRP:registerExtension(UI)    
+vRP:registerExtension(QZUI)    

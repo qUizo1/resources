@@ -113,6 +113,15 @@ AddEventHandler("playerSpawned", function()
     TriggerServerEvent("hud:getData")
 end)
 
+AddEventHandler("hud:admin")
+RegisterNetEvent("hud:admin", function(title, text, duration)
+    SendNUIMessage({
+        type = "admin_announcement",
+        title = title,
+        message = text,
+        duration = duration or 10000
+    })
+end)
 ----------------------------------COMMANDS FOR TESTING PURPOSES----------------------------------
 
 RegisterCommand("testnoti", function()
@@ -128,6 +137,12 @@ RegisterCommand("testtui", function()
     Citizen.Wait(5000)
     HideTextUI()
 end, false)
+
+RegisterCommand("anunt", function()
+    TriggerEvent("hud:admin",
+        "ATENTIE JUCATORI",
+        "Serverul va fi repornit in 5 minute pentru mentenanta.",10000)
+end)
 
 
 vRP:registerExtension(UI)       

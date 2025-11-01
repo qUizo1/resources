@@ -223,6 +223,18 @@ local function menu_admin(self)
     self.remote._toggleGodmode(menu.user.source)
   end
 
+  local function m_anunt(menu)
+    local user = menu.user
+    if user then
+      local message = user:prompt("Message: ", "")
+      if message == "" then
+        vRP.EXT.Base.remote._notify(user.source, "Announcement cancelled: No message provided.")
+        return
+      end
+      TriggerClientEvent( "hud:admin", -1, "ADMIN ANNOUNCEMENT", message)
+    end
+  end
+
   vRP.EXT.GUI:registerMenuBuilder("admin", function(menu)
     local user = menu.user
 
@@ -246,6 +258,9 @@ local function menu_admin(self)
     end
     if user:hasPermission("player.noclip") then
       menu:addOption("GodMode", m_godmode)
+    end
+    if user:hasPermission("player.noclip") then
+      menu:addOption("Admin Announcement", m_anunt)
     end
     if user:hasPermission("player.coords") then
       menu:addOption(lang.admin.coords.title(), m_coords)

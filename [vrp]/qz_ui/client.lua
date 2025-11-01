@@ -122,6 +122,70 @@ RegisterNetEvent("hud:admin", function(title, text, duration)
         duration = duration or 10000
     })
 end)
+
+Citizen.CreateThread(function()
+    while true do
+        local playerPed = PlayerPedId()
+        local vehicle = GetVehiclePedIsIn(playerPed, false)
+        local isInVehicle = DoesEntityExist(vehicle) and IsPedInVehicle(playerPed, vehicle, false)
+        
+        if isInVehicle then
+            local speed = GetEntitySpeed(vehicle) * 3.6
+            local fuel = GetVehicleFuelLevel(vehicle)
+            
+            SendNUIMessage({
+                type = 'update_speed',
+                speed = speed,
+                inVehicle = true,
+                fuel = fuel
+            })
+        else
+            SendNUIMessage({
+                type = 'update_speed',
+                speed = 0,
+                inVehicle = false
+            })
+        end
+        
+        Citizen.Wait(100)
+    end
+end)
+
+Citizen.CreateThread(function()
+    local wasInVehicle = false
+    while true do
+        local playerPed = PlayerPedId()
+        local vehicle = GetVehiclePedIsIn(playerPed, false)
+        local isInVehicle = DoesEntityExist(vehicle) and IsPedInVehicle(playerPed, vehicle, false)
+        
+        if isInVehicle ~= wasInVehicle then
+            wasInVehicle = isInVehicle
+            local fuel = GetVehicleFuelLevel(vehicle)
+            SendNUIMessage({
+                type = 'update_speed',
+                speed = 0,
+                inVehicle = isInVehicle,
+                fuel = fuel
+            })
+            
+            SendNUIMessage({
+                type = 'update_vehicle_state',
+                inVehicle = isInVehicle
+            })
+        end
+        
+        if isInVehicle then
+            local speed = GetEntitySpeed(vehicle) * 3.6
+            SendNUIMessage({
+                type = 'update_speed',
+                speed = speed,
+                inVehicle = true
+            })
+        end
+        
+        Citizen.Wait(100)
+    end
+end)
 ----------------------------------COMMANDS FOR TESTING PURPOSES----------------------------------
 
 RegisterCommand("testnoti", function()
@@ -144,7 +208,34 @@ RegisterCommand("anunt", function()
         "Serverul va fi repornit in 5 minute pentru mentenanta.",10000)
 end)
 
+RegisterCommand('setfuel', function(source, args, rawCommand)
+    local playerPed = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(playerPed, false)
+    
+    if DoesEntityExist(vehicle) then
+        local fuelLevel = tonumber(args[1])
+        
+        if fuelLevel and fuelLevel >= 0 and fuelLevel <= 100 then
+            SetVehicleFuelLevel(vehicle, fuelLevel + 0.0)
+            
+            local currentSpeed = GetEntitySpeed(vehicle) * 3.6
+            SendNUIMessage({
+                type = 'update_speed',
+                speed = currentSpeed,
+                inVehicle = true,
+                fuel = fuelLevel
+            })
+            TriggerEvent("hud:notify", "Notificare", "Ai setat combustibilul la " .. fuelLevel .. "%", 5000)
+        else
+            TriggerEvent("hud:notify", "Notificare", "Folosire corectă: /setfuel [0-100]", 5000)
+        end
+    else
+        TriggerEvent("hud:notify", "Notificare", "Trebuie să fii într-un vehicul!", 5000)
+    end
+end, false)
+
 
 vRP:registerExtension(UI)       
 
 --TriggerEvent("hud:notify", title, msg, time)
+--TriggerEvent("hud:admin", -1, msg)

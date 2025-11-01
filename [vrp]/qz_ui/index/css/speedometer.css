@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+#speedometer {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    z-index: 9997;
+    font-family: 'Inter', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 260px;
+    height: 110px;
+}
+
+#speedometer.visible {
+    opacity: 1;
+}
+
+.speed-container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 20px 20px;
+    min-width: 120px;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #ff880048;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
+    gap: 5px;
+}
+
+.speed-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.speed-bars {
+    display: flex;
+    gap: 3px;     
+    height: 20px;
+    align-items: flex-end;
+}
+
+.speed-bar {
+    width: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    transition: height 0.3s ease, background-color 0.3s;
+}
+
+.speed-value {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+min-width: 2ch;
+    text-align: center;
+        font-family: 'Inter', monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+.speed-unit {
+    color: #ff8800;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 136, 0, 0.5);
+}
+
+.speed-blur {
+    position: absolute;
+    width: 60px;
+    height: 100px;
+    top: 30%;
+    left: -20px;
+    background-color: #ff8800;
+    filter: blur(30px);
+    transform: rotate(135deg);
+    z-index: -1;
+}
+
+.fuel-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    top: 5px;
+}
+
+.fuel-bar-container {
+    width: 150px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.fuel-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #ff8800;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 20px rgb(255, 136, 0);
+}
+
+.fuel-icon {
+    color: #ff8800;
+    font-size: 14px;
+}
+
+.fuel-icon.low-fuel {
+    animation: pulse 1s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.fuel-warning {
+  animation: shake 0.5s infinite;
+}
+
+.fuel-container-critical {
+  animation: flash 1s infinite;
+}

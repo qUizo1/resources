@@ -1,4 +1,4 @@
--- init vRP client context
+
 Tunnel = module("vrp", "lib/Tunnel")
 Proxy = module("vrp", "lib/Proxy")
 
@@ -6,7 +6,6 @@ local cvRP = module("vrp", "client/vRP")
 vRP = cvRP()
 
 local pvRP = {}
--- load script in vRP context
 pvRP.loadScript = module
 Proxy.addInterface("vRP", pvRP)        
 
@@ -186,10 +185,77 @@ Citizen.CreateThread(function()
         Citizen.Wait(100)
     end
 end)
+
+local isProgressActive = false
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        if isProgressActive then
+            if IsControlJustPressed(0, 73) then
+                isProgressActive = false
+                EnableControlAction(0, 30, true) -- Enable movement
+                EnableControlAction(0, 31, true) -- Enable movement
+                EnableControlAction(0, 24, true) -- Enable attack
+                EnableControlAction(0, 257, true) -- Enable attack 2
+                EnableControlAction(0, 25, true) -- Enable aim
+                EnableControlAction(0, 263, true) -- Enable melee
+                EnableControlAction(0, 264, true) -- Enable melee
+                EnableControlAction(0, 257, true) -- Enable melee
+                EnableControlAction(0, 140, true) -- Enable melee
+                EnableControlAction(0, 141, true) -- Enable melee
+                EnableControlAction(0, 142, true) -- Enable melee
+                EnableControlAction(0, 143, true) -- Enable melee
+                EnableControlAction(0, 23, true) -- Enter vehicle
+                SendNUIMessage({
+                    action = "hideProgress"
+                })
+            end
+        end
+    end
+end)
+
+function DisableControlActions()
+    Citizen.CreateThread(function()
+        while isProgressActive do
+                DisableControlAction(0, 30, true) -- Disable movement
+                DisableControlAction(0, 31, true) -- Disable movement
+                DisableControlAction(0, 24, true) -- Disable attack
+                DisableControlAction(0, 257, true) -- Disable attack 2
+                DisableControlAction(0, 25, true) -- Disable aim
+                DisableControlAction(0, 263, true) -- Disable melee
+                DisableControlAction(0, 264, true) -- Disable melee
+                DisableControlAction(0, 257, true) -- Disable melee
+                DisableControlAction(0, 140, true) -- Disable melee
+                DisableControlAction(0, 141, true) -- Disable melee
+                DisableControlAction(0, 142, true) -- Disable melee
+                DisableControlAction(0, 143, true) -- Disable melee
+                DisableControlAction(0, 23, true) -- Enter vehicle
+                Citizen.Wait(0)
+        end
+    end)
+end
+
+RegisterNetEvent("progressBar:start")
+AddEventHandler("progressBar:start", function(title, duration)
+    local playerPed = PlayerPedId()
+    isProgressActive = true
+    DisableControlActions()
+    SendNUIMessage({
+        action = "showProgress",
+        title = title,
+        duration = duration
+    })
+    Citizen.SetTimeout(duration, function()
+        isProgressActive = false
+    end)
+    return duration
+end)
+
 ----------------------------------COMMANDS FOR TESTING PURPOSES----------------------------------
 
 RegisterCommand("testnoti", function()
-    TriggerEvent("hud:notify", "Informatie", "Lorem Ipsum is simply dummy text", 3000)
+    TriggerEvent("hud:notify", "Informatie", "Lorem Ipsum", 3000)
     Citizen.Wait(1000)
     TriggerEvent("hud:notify", "Notificare", "Mesaj de test", 5000)
     Citizen.Wait(1000)
@@ -197,7 +263,7 @@ RegisterCommand("testnoti", function()
 end, false)
 
 RegisterCommand("testtui", function()
-    ShowTextUI("Accesează meniul")
+    ShowTextUI("Acceseaza meniul")
     Citizen.Wait(5000)
     HideTextUI()
 end, false)
@@ -227,15 +293,20 @@ RegisterCommand('setfuel', function(source, args, rawCommand)
             })
             TriggerEvent("hud:notify", "Notificare", "Ai setat combustibilul la " .. fuelLevel .. "%", 5000)
         else
-            TriggerEvent("hud:notify", "Notificare", "Folosire corectă: /setfuel [0-100]", 5000)
+            TriggerEvent("hud:notify", "Notificare", "Folosire corecta: /setfuel [0-100]", 5000)
         end
     else
-        TriggerEvent("hud:notify", "Notificare", "Trebuie să fii într-un vehicul!", 5000)
+        TriggerEvent("hud:notify", "Notificare", "Trebuie sa fii într-un vehicul!", 5000)
     end
+end, false)
+
+RegisterCommand("testprogress", function(source, args, raw)
+    TriggerEvent("progressBar:start", "Test Progress Bar", 5000)
 end, false)
 
 
 vRP:registerExtension(UI)       
 
 --TriggerEvent("hud:notify", title, msg, time)
---TriggerEvent("hud:admin", -1, msg)
+--TriggerEvent("hud:admin", -1, title, msg, duration)
+--TriggerEvent("progressBar:start", msg, time)

@@ -44,7 +44,8 @@ cfg.groups = {
     "player.givemoney",
     "player.giveitem",
     "profiler.server",
-    "profiler.client"
+    "profiler.client",
+    "admin.announce"
   },
   ["admin"] = {
     "admin.tickets",

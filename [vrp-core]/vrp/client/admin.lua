@@ -24,7 +24,7 @@ function Admin:__construct()
         local x,y,z = Base:getPosition()
         local dx,dy,dz = Base:getCamDirection()
         local speed = self.noclip_speed
-  
+
         -- change speed
 	    if IsControlPressed(1, 21) and IsControlPressed(0,32) then
 		  speed = self.noclip_speed_fast
@@ -385,6 +385,11 @@ Citizen.CreateThread(function()
 end)
 
 
+
+RegisterKeyMapping("nc", "Toggle noclip (Admin)", "keyboard", "F2")
+RegisterCommand("nc", function()
+  TriggerServerEvent("vRP:admin:noclip")
+end, false)
 
 -- TUNNEL
 

@@ -253,6 +253,16 @@ local function menu_admin(self)
   end)
 end
 
+RegisterNetEvent("vRP:admin:noclip")
+AddEventHandler("vRP:admin:noclip", function()
+  local user = vRP.users_by_source[source]
+  if user and user:hasPermission("player.noclip") then
+    vRP.EXT.Admin.remote._SetNoclipActive(source)
+  end
+end)
+
+
+
 -- METHODS
 
 function Admin:__construct()

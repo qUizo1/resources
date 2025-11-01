@@ -1,6 +1,6 @@
 
 local cfg = {
-  vital_display = true,
+  vital_display = false,
   vital_display_anchor = "minimap",
   water_per_minute = 0.025,
   food_per_minute = 0.0125,

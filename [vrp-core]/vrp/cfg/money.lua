@@ -7,7 +7,7 @@ cfg.open_bank = 1000
 
 cfg.lose_wallet_on_death = true
 
-cfg.money_display = true
+cfg.money_display = false
 
 -- money display css
 cfg.display_css = [[

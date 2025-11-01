@@ -78,6 +78,43 @@ function GetCurrentLocation()
     return currentZone, currentStreet
 end
 
+function GetStamina()
+    return 100 - (GetPlayerSprintStaminaRemaining(PlayerId()) or 0)
+end
+
+RegisterNetEvent("hud:update")
+AddEventHandler("hud:update", function(data)
+    data.stamina = GetStamina()
+
+    SendNUIMessage({
+        type = "hud_update",
+        health = data.health or 0,
+        armor = data.armor or 0,
+        hunger = data.hunger or 0,
+        thirst = data.thirst or 0,
+        stamina = data.stamina
+    })
+end)
+
+RegisterNetEvent("hud:getData")
+AddEventHandler("hud:getData", function()
+    TriggerServerEvent("hud:getData")
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        TriggerServerEvent("hud:getData")
+        Citizen.Wait(1000)
+    end
+end)
+
+AddEventHandler("playerSpawned", function()
+    Citizen.Wait(5000)
+    TriggerServerEvent("hud:getData")
+end)
+
+----------------------------------COMMANDS FOR TESTING PURPOSES----------------------------------
+
 RegisterCommand("testnoti", function()
     TriggerEvent("hud:notify", "Informatie", "Lorem Ipsum is simply dummy text", 3000)
     Citizen.Wait(1000)

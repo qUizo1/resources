@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+#hud-container {
+    position: fixed;
+    bottom: 50px;
+    left: 91%;
+    display: flex;
+    gap: 15px;
+    z-index: 9998;
+    flex-direction: column;
+    transition: bottom 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+#hud-container.in-vehicle {
+    bottom: 170px;
+}
+
+
+.culoarer {
+    position: absolute;
+    width: 60px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(135deg);
+    background-color: rgba(0, 0, 0,0.7);
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.hud-item {
+    position: relative; 
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: rgba(0, 0, 0,0.7);
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 60px;
+    text-align: center;
+    overflow: hidden; 
+    isolation: isolate; 
+}
+
+.icon {
+    font-size: 18px;
+    color: white;
+    z-index: 1; 
+}
+
+.bar-container {
+    width: 100px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.bar {
+    height: 100%;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.percent {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    opacity: 0.9;
+    z-index: 1;
+}
+
+.health .culoarer { background-color: #ff5a5a; }
+.armor .culoarer { background-color: #5a8cff; }
+.hunger .culoarer { background-color: #ffb45a; }
+.thirst .culoarer { background-color: #5ab4ff; }
+.stamina .culoarer { background-color: #5aff5a; }
+
+.health .icon { color: #ff5a5a; }
+.health .bar { background-color: #ff5a5a; }
+
+.armor .icon { color: #5a8cff; }
+.armor .bar { background-color: #5a8cff; }
+
+.hunger .icon { color: #ffb45a; }
+.hunger .bar { background-color: #ffb45a; }
+
+
+.thirst .icon { color: #5ab4ff; }
+.thirst .bar { background-color: #5ab4ff; }
+
+
+.stamina .icon { color: #5aff5a; }
+.stamina .bar { background-color: #5aff5a; }
+
+.hud-item[data-value="0"] .bar {
+    background-color: #555 !important;
+}
+#armor-item[data-value="0"] { 
+    display: none !important; 
+}

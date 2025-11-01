@@ -14,20 +14,6 @@ function Admin:__construct()
 	self.noclip_speed_fast = 5.0  
 	self.permission = false
 
-
-	Citizen.CreateThread(function()
-		while true do
-			Citizen.Wait(1)
-			if self.permission then
-				if IsControlJustPressed(0,289) then
-					self:SetNoclipActive()
-				end
-			else
-				Citizen.Wait(5000)
-			end
-		end
-	end)	
-
   -- noclip task
   Citizen.CreateThread(function()
     local Base = vRP.EXT.Base
@@ -149,12 +135,12 @@ function Admin:SetNoclipActive()
     NoclipActive = not NoclipActive
 	
 	if NoclipActive then
-		TriggerEvent('fpt:notify', 'success' , 'Noclip ON! Asteapta sa porneasca!')
+		TriggerEvent('hud:notify', 'Notificare' , 'Noclip ON! Asteapta sa porneasca!')
 		if IsPedInAnyVehicle(PlayerPedId(), true) then
 			vehEntity = GetVehiclePedIsIn(PlayerPedId(), false)
 		end
 	else
-		TriggerEvent('fpt:notify', 'error' , 'Noclip OFF!')
+		TriggerEvent('hud:notify', 'Notificare' , 'Noclip OFF!')
 		if vehEntity ~= nil then
 		Citizen.Wait(15)
 		SetPedIntoVehicle(PlayerPedId(), vehEntity, -1)

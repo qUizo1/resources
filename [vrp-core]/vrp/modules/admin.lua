@@ -58,6 +58,44 @@ local function menu_admin_users_user(self)
     end
   end
 
+  local function m_revive(menu)
+    local user = menu.user
+    local id = menu.data.id
+    local tuser = vRP.users[id]
+
+    if tuser then
+      vRP.EXT.Survival.remote._varyHealth(tuser.source, 200)
+      vRP.EXT.Base.remote._notify(user.source, "I-ai dat revive jucatorului "..tuser.name.."!")
+      vRP.EXT.Base.remote._notify(tuser.source, "Ai primit revive de la adminul "..user.name.."!")
+    end
+  end
+
+  local function m_armura(menu)
+    local user = menu.user
+    local id = menu.data.id
+    local tuser = vRP.users[id]
+
+    if tuser then
+      vRP.EXT.PlayerState.remote.setArmour(tuser.source, 100)
+      vRP.EXT.Base.remote._notify(user.source, "I-ai dat armura jucatorului "..tuser.name.."!")
+      vRP.EXT.Base.remote._notify(tuser.source, "Ai primit armura de la adminul "..user.name.."!")
+    end
+  end
+
+  local function m_vitals(menu)
+    local user = menu.user
+    local id = menu.data.id
+    local tuser = vRP.users[id]
+  
+    if tuser then
+      tuser:setVital("food", 1)
+      tuser:setVital("water", 1)
+      vRP.EXT.Base.remote._notify(user.source, "I-ai resetat vitalele jucatorului "..tuser.name.."!")
+      vRP.EXT.Base.remote._notify(tuser.source, "Vitalele tale au fost resetate de catre adminul "..user.name.."!")
+    end
+  end
+
+
   vRP.EXT.GUI:registerMenuBuilder("admin.users.user", function(menu)
     local user = menu.user
     local id = menu.data.id
@@ -81,6 +119,15 @@ local function menu_admin_users_user(self)
     end
     if tuser and user:hasPermission("player.tpto") then
       menu:addOption(lang.admin.users.user.tpto.title(), m_tpto)
+    end
+    if tuser and user:hasPermission("player.tpto") then
+      menu:addOption("Revive", m_revive)
+    end
+    if tuser and user:hasPermission("player.tpto") then
+      menu:addOption("Armura", m_armura)
+    end
+    if tuser and user:hasPermission("player.tpto") then
+      menu:addOption("Reset Vitals", m_vitals)
     end
   end)
 end
@@ -114,40 +161,6 @@ end
 local function menu_admin(self)
   local function m_users(menu)
     menu.user:openMenu("admin.users")
-  end
-
-  local function m_emote(menu, upper)
-    local user = menu.user
-    local content = user:prompt(lang.admin.custom_upper_emote.prompt(),"")
-    local seq = {}
-    for line in string.gmatch(content,"[^\n]+") do
-      local args = {}
-      for arg in string.gmatch(line,"[^%s]+") do
-        table.insert(args,arg)
-      end
-
-      table.insert(seq,{args[1] or "", args[2] or "", args[4] or 1})
-    end
-
-    vRP.EXT.Base.remote._playAnim(user.source, upper, seq, false)
-  end
-
-  local function m_emote_task(menu)
-    local user = menu.user
-    local content = user:prompt(lang.admin.custom_emote_task.prompt(),"")
-    local seq = {task = content or ""}
-
-    vRP.EXT.Base.remote._playAnim(user.source, false, seq, false)
-  end
-
-  local function m_sound(menu)
-    local user = menu.user
-    local content = user:prompt(lang.admin.custom_sound.prompt(),"")
-    local args = {}
-    for arg in string.gmatch(content,"[^%s]+") do
-      table.insert(args,arg)
-    end
-    vRP.EXT.Base.remote._playSound(user.source, args[1] or "", args[2] or "")
   end
 
   local function m_coords(menu)

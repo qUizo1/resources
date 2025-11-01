@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+#banking-ui {
+    background-image: linear-gradient(135deg, rgba(0,0,0,0.19), rgba(255, 136, 0, 0.19), rgba(0,0,0,0.19));
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9994;
+}
+
+.welcome-container {
+    position: absolute;
+    width: 1118px;
+    height: 307px;
+    background-color: rgba(217, 217, 217,0.10);
+    border: 1px solid rgba(255, 255, 255, 0.47);
+    border-radius: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    top: 60px;
+}
+
+.bank-logo {
+    position: absolute;
+    width: 303px;
+    height: 202px;
+    left: 80px;
+    top: 52px;
+    background-image: url('pochita.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.welcome-message {
+    position: absolute;
+    font-weight:bold;
+    height: 101px;
+    width:589px;
+    left: 428px;
+    top: 52px;
+    color: white;
+    font-size: 64px;
+}
+
+.name {
+    color: #989898;
+    font-size:40px;
+    font-weight: bold;
+    position: absolute;
+    width:531px;
+    height: 47px;
+    top: 153px;
+    left: 428px;
+}
+
+.balance-container {
+    position: absolute;
+    width: 1118px;
+    height: 618px;
+    background-color: rgba(217, 217, 217,0.10);
+    border: 1px solid rgba(255, 255, 255, 0.47);
+    border-radius: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    top:387px;
+}
+
+.balance-label {
+    color: #989898;
+    font-size: 32px;
+    font-weight: 500;
+    position: absolute;
+    width: 307px;
+    height: 38px;
+    top: 22px;
+    left:44px;
+}
+
+.balance-amount {
+    color:white;
+    font-size: 32px;
+    height: 48px;
+    font-weight: 500;
+    position: absolute;
+    left: 44px;
+    top: 62px;
+}
+
+.card {
+    background-image: url('card.png');
+    background-size: cover;
+    background-position: center;
+    width: 384px;
+    height: 240px;
+    position: absolute;
+    top:24px;
+    right: 41px;
+}
+
+.line {
+    width: 1118px;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(255,136,0,0),rgb(255,136,0),rgba(255,136,0,0));
+    position: absolute;
+    top:309px;
+}
+
+#withdraw-btn {
+    width: 309px;
+    height: 67px;
+    background-color: rgba(21, 255, 0, 0.20);
+    border-radius: 10px;
+    border: 1px solid rgba(21, 255, 0, 0.80);
+    position: absolute;
+    bottom: 138px;
+    left: 42px;
+}
+
+#deposit-btn {
+    width: 309px;
+    height: 67px;
+    background-color: rgba(255, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 0, 0, 0.8);
+    position: absolute;
+    bottom: 138px;
+    left: 405px;
+}
+
+#transfer-btn {
+    width: 309px;
+    height: 67px;
+    background-color: rgba(255, 136, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 136, 0, 0.8);
+    position: absolute;
+    bottom: 138px;
+    right: 41px;
+}
+
+.action-label {
+    color:white;
+    width: 307px;
+    height: 67px;
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

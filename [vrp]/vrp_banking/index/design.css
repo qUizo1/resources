@@ -5,8 +5,9 @@
     font-family: 'Inter', sans-serif;
 }
 
-body {
-    background-color: black;
+@font-face {
+    font-family: "Againts";
+    src: url(fonts/againts.otf);
 }
 
 #banking-ui {
@@ -17,6 +18,7 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 9994;
+    background-color: black;
 }
 
 .welcome-container {
@@ -24,44 +26,46 @@ body {
     width: 1118px;
     height: 307px;
     background-color: rgba(217, 217, 217,0.10);
-    border: 1px solid rgba(255, 255, 255, 0.47);
+    border: 1px solid rgba(255, 136, 0, 0.47);
     border-radius: 10px;
     right: 50%;
     transform: translateX(50%);
     top: 60px;
 }
-
-.bank-logo {
-    position: absolute;
-    width: 303px;
-    height: 202px;
-    left: 80px;
-    top: 52px;
-    background-image: url('pochita.png');
-    background-size: cover;
-    background-position: center;
-}
-
 .welcome-message {
     position: absolute;
-    font-weight:bold;
     height: 101px;
-    width:589px;
-    left: 428px;
+    width:1118px;
+    text-align: center;
     top: 52px;
-    color: white;
+    -webkit-text-stroke:.1vh #ff8800 ;
+    background: radial-gradient(65.42% 65.42% at 50% 50%, rgba(255, 136, 0, 0.83) 0%, #422401 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1vh #ff8800;
+    text-shadow: 0px 0px 5vh #ff8800d8;
+    font-style: normal;
+    font-weight: 400;
     font-size: 64px;
+    font-family: 'Againts';
 }
 
 .name {
-    color: #989898;
+        -webkit-text-stroke:.1vh #ff8800 ;
+    background: radial-gradient(65.42% 65.42% at 50% 50%, rgba(255, 136, 0, 0.83) 0%, #422401 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1vh #ff8800;
+    text-shadow: 0px 0px 5vh #ff8800d8;
     font-size:40px;
     font-weight: bold;
     position: absolute;
-    width:531px;
+    text-align: center;
+    width:1118px;
     height: 47px;
     top: 153px;
-    left: 428px;
 }
 
 .balance-container {
@@ -69,7 +73,7 @@ body {
     width: 1118px;
     height: 618px;
     background-color: rgba(217, 217, 217,0.10);
-    border: 1px solid rgba(255, 255, 255, 0.47);
+    border: 1px solid rgba(255, 136, 0, 0.47);
     border-radius: 10px;
     right: 50%;
     transform: translateX(50%);
@@ -77,7 +81,13 @@ body {
 }
 
 .balance-label {
-    color: #989898;
+    -webkit-text-stroke:.1vh rgb(255, 136, 0) ;
+    background: radial-gradient(65.42% 65.42% at 50% 50%, rgba(255, 136, 0, 0.83) 0%, #422401 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1vh #ff8800;
+    text-shadow: 0px 0px 5vh #ff8800d8;
     font-size: 32px;
     font-weight: 500;
     position: absolute;
@@ -98,7 +108,7 @@ body {
 }
 
 .card {
-    background-image: url('card.png');
+    background-image: url('img/card.png');
     background-size: cover;
     background-position: center;
     width: 384px;
@@ -158,4 +168,91 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* PROMPT */
+
+.bankingContainer2 {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: linear-gradient(135deg, rgba(0,0,0,0.19), rgba(255, 136, 0, 0.19), rgba(0,0,0,0.19));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    background-color: black;
+}
+
+.bankingContainer2 > .title {
+    -webkit-text-stroke:.1vh rgb(255, 136, 0) ;
+    background: radial-gradient(65.42% 65.42% at 50% 50%, rgba(255, 136, 0, 0.83) 0%, #422401 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1vh #ff8800;
+    text-shadow: 0px 0px 5vh #ff8800d8;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.3vw;
+}
+
+.bankingContainer2 > .desc {
+    color: rgba(180, 180, 180, 0.658);
+    text-align: center;
+    font-weight: 400;
+    font-size: .65vw;
+}
+
+.bankingContainer2 > input {
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.485);
+    height: 2.4vw;
+    width: 14vw;
+    color: white;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border-radius: .7vw;
+    margin-top: .5vw;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.bankingContainer2 > .buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vw;
+    gap: 1vw;
+}
+
+.buttons > .btn {
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: .5vw;
+    font-size: .7vw;
+    border-radius: .55vw;
+    letter-spacing: .1vw;
+    transition: .5s;
+    background-color: rgba(0, 0, 0, 0.485);
+    opacity:.6;
+}
+
+#continua:hover {
+    background-color: rgba(21, 255, 0, 0.20);
+}
+
+#anuleaza:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.buttons > .btn:hover {
+    opacity: 1;
 }

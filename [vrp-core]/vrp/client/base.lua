@@ -200,16 +200,7 @@ end
 
 -- GTA 5 text notification
 function Base:notify(msg,type,title,time)
-    local function clearColors(str)
-      local idf = string.match(str, "~.~")
-      while idf do
-          str = str:gsub(idf, "")
-          idf = string.match(str, "~.~")
-      end
-      return str
-    end
-    
-    msg = clearColors(msg)
+    msg = msg
     title = title or "Notificare"
     time = time or 5000
     TriggerEvent("hud:notify", title, msg, time)

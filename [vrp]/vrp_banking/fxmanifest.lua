@@ -16,8 +16,6 @@ server_scripts {
 ui_page 'index/index.html'
 
 files {
-    'index/index.html',
-    'index/*.css',
-    'index/*.png',
-    'index/*.js'
+    'index/**',
+    "cfg/cfg.lua"
 }

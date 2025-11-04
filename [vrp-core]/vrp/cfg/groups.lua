@@ -45,7 +45,8 @@ cfg.groups = {
     "player.giveitem",
     "profiler.server",
     "profiler.client",
-    "admin.announce"
+    "admin.announce",
+    "owner.title"
   },
   ["admin"] = {
     "admin.tickets",
@@ -63,10 +64,12 @@ cfg.groups = {
     "player.display_custom",
     "player.coords",
     "player.tptome",
-    "player.tpto"
+    "player.tpto",
+    "admin.title"
   },
   ["god"] = {
-    "admin.god" -- reset survivals/health periodically
+    "admin.god", -- reset survivals/health periodically
+    "mod.title"
   },
   ["user"] = {
     "player.characters", -- characters menu

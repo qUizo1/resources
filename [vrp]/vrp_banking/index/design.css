@@ -31,7 +31,37 @@
     right: 50%;
     transform: translateX(50%);
     top: 60px;
+    animation: scss 2s;
 }
+
+@keyframes slidein {
+    from {
+      transform: translateY(-100%);
+    }
+  
+    to {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes slideright {
+    from {
+      transform: translateX(-100%);
+    }
+  
+    to {
+      transform: translateX(0%);
+    }
+  }
+@keyframes scss {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+        opacity: 1;
+    }
+  }
+
 .welcome-message {
     position: absolute;
     height: 101px;
@@ -78,6 +108,7 @@
     right: 50%;
     transform: translateX(50%);
     top:387px;
+    animation: scss 2s;
 }
 
 .balance-label {
@@ -95,6 +126,7 @@
     height: 38px;
     top: 22px;
     left:44px;
+    animation: scss 3s;
 }
 
 .balance-amount {
@@ -105,6 +137,7 @@
     position: absolute;
     left: 44px;
     top: 62px;
+    animation: scss 3s;
 }
 
 .card {
@@ -116,6 +149,7 @@
     position: absolute;
     top:24px;
     right: 41px;
+    animation: scss 2s;
 }
 
 .line {
@@ -124,6 +158,7 @@
     background-image: linear-gradient(to right, rgba(255,136,0,0),rgb(255,136,0),rgba(255,136,0,0));
     position: absolute;
     top:309px;
+    animation: scss 2s;
 }
 
 #withdraw-btn {
@@ -135,6 +170,7 @@
     position: absolute;
     bottom: 138px;
     left: 42px;
+    animation: scss 2s;
 }
 
 #deposit-btn {
@@ -146,6 +182,7 @@
     position: absolute;
     bottom: 138px;
     left: 405px;
+    animation: scss 2s;
 }
 
 #transfer-btn {
@@ -157,6 +194,7 @@
     position: absolute;
     bottom: 138px;
     right: 41px;
+    animation: scss 2s;
 }
 
 .action-label {

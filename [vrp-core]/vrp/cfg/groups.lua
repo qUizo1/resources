@@ -46,7 +46,8 @@ cfg.groups = {
     "profiler.server",
     "profiler.client",
     "admin.announce",
-    "owner.title"
+    "owner.title",
+    "chat.clear"
   },
   ["admin"] = {
     "admin.tickets",

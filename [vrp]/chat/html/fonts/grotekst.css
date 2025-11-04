@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'groteskregular';
+	src: url('SpaceGrotesk-Regular.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'grotesksemi';
+	src: url('SpaceGrotesk-SemiBold.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'groteskbold';
+	src: url('SpaceGrotesk-Bold.otf');
+	font-weight: normal;
+	font-style: normal;
+}

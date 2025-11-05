@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+@font-face {
+    font-family: "Againts";
+    src: url(../fonts/againts.otf);
+}
+
+.money-hud {
+    position: fixed;
+    right: 0px;
+    z-index: 9993;
+    overflow: hidden;
+}
+
+.title {
+    font-family: 'Againts';
+    font-size: 96px;
+    width: 229px;
+    height: 121px;
+    text-align: center;
+    -webkit-text-stroke:.1vh #ff8800 ;
+    background: radial-gradient(65.42% 65.42% at 50% 50%, rgba(255, 136, 0, 0.83) 0%, #422401 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1vh #ff8800;
+    /*text-shadow: 0px 0px 5vh #ff8800d8;*/
+    font-style: normal;
+    font-weight: 400;
+}
+
+.money-box {
+    width: 187px;
+    height: 44px;
+    background: 
+    linear-gradient(to right, #ff880000, rgba(0,0,0,0.7)) padding-box,
+    linear-gradient(to right, #ff880000, #ff8800) border-box;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    border-left: 0;
+}
+
+.money {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    width: 173px;
+    text-align: right;
+    align-items: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

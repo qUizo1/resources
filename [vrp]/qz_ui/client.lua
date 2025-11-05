@@ -252,6 +252,30 @@ AddEventHandler("progressBar:start", function(title, duration)
     return duration
 end)
 
+RegisterNetEvent("hud:sendMessage", function(...)
+    SendNUIMessage(...)
+end)
+
+local showMoney = false
+RegisterCommand("hud", function()
+   if not showMoney then
+    TriggerServerEvent("hud:retrieveData")
+    SendNUIMessage({
+      target = "money-hud",
+      action = "display",
+      code = true
+    })
+    showMoney = true
+    Wait(5000)
+    SendNUIMessage({
+      target = "money-hud",
+      action = "display",
+      code = false
+    })
+    showMoney = false
+  end
+end)
+
 ----------------------------------COMMANDS FOR TESTING PURPOSES----------------------------------
 
 RegisterCommand("testnoti", function()

@@ -16,10 +16,7 @@ server_scripts {
 ui_page 'index/index.html'
 
 files {
-    'index/index.html',
-    'index/css/*.css',
-    'index/sounds/*.mp3',
-    'index/js/*.js'
+    'index/**'
 }
 
 export 'ShowTextUI'

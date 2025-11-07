@@ -869,7 +869,7 @@ button, textarea, a, select, input {
   border-radius: 5px;
   padding: 2px 6px;
   font-weight: 600;
-  background: #FD4D50;
+  background: var(--staff-color, #FD4D50);
   box-shadow: 0px 0px 20px 5px rgba(253, 77, 80, 0.25);
   border-radius: 3px;
   text-transform: uppercase;
@@ -884,14 +884,14 @@ button, textarea, a, select, input {
   color: white;
 }
 
-.admin-box { 
-  background-color: #ff0000; 
-  box-shadow: 0px 0px 15px 3px rgba(255, 0, 0, 0.7); 
+.admin-box {
+  background-color: #ff0000;
+  box-shadow: 0px 0px 15px 3px rgba(255, 0, 0, 0.7);
 }
 
-.fondator-box { 
-  background-color: #b86500; 
-  box-shadow: 0px 0px 15px 3px rgba(184, 101, 0, 0.7); 
+.fondator-box {
+  background-color: #b86500;
+  box-shadow: 0px 0px 15px 3px rgba(184, 101, 0, 0.7);
 }
 
 .name-box {
@@ -901,6 +901,11 @@ button, textarea, a, select, input {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   margin-right: 2px;
+}
+
+.name-box.staff-colored {
+  background: var(--staff-color, rgba(255, 255, 255, 0.1));
+  color: white;
 }
 
 .time-box {

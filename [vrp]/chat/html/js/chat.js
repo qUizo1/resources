@@ -2,13 +2,12 @@
 async function post(url, data = {}) {
     const response = await fetch(`https://${GetParentResourceName()}/${url}`, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-  
+
     return await response.json();
-  }
+}
   
   const truncateText = (text, max) => {
     return text.substr(0,max-1)+(text.length>max?'...':''); 
@@ -124,54 +123,73 @@ async function post(url, data = {}) {
         $(".chat-hidden").show();
     },
   
-    addMessage(msg, type = "msg") {
+    addMessage(data, type = "msg") {
         if (!this.active) {
             this.build(true);
             this.queueHide();
         }
-    
+
         if (type == "msg") {
+            let msg = data.msg || data;
+            let author = data.author || "";
+            let prefix = data.prefix || "";
+            let color = data.color || "";
+
+
             msg = this.colorize(msg);
-    
+
             let now = new Date();
             let timeString = now.getHours().toString().padStart(2, '0') + ":" +
                              now.getMinutes().toString().padStart(2, '0') + ":" +
                              now.getSeconds().toString().padStart(2, '0');
-    
+
             let staffRoles = {
                 "Fondator": "fondator-box",
                 "Administrator": "admin-box",
                 "Jucator": "jucator-box"
             };
-    
+
             Object.keys(staffRoles).forEach(role => {
                 let regex = new RegExp(`(${role})`, "g");
                 msg = msg.replace(regex, `<span class="staff-box ${staffRoles[role]}" style="font-family: 'grotesksemi'">$1</span>`);
             });
-            
+
             msg = `<span style="font-family: 'groteskregular'">${msg}</span>`;
-            
-            msg = msg.replace(/([\w]+) \((\d+)\):/, 
-                `<span class="name-box" style="font-family: 'groteskregular'">$1($2)</span>:`);
-            
-            this.container[this.direction == "upToDown" ? "append" : "prepend"](` 
+
+            let fullMessage = "";
+            if (author) {
+                let namePart = `<span class="name-box" style="font-family: 'groteskregular'">${author}</span>`;
+                let prefixPart = "";
+
+                if (prefix && prefix !== "Jucator") {
+                    // Create a separate colored box for the prefix with glow
+                    prefixPart = `<span class="staff-box ${prefix.toLowerCase()}-box" style="--staff-color: #${color}">${prefix}</span> `;
+                }
+
+                fullMessage = `${prefixPart}${namePart}: ${msg}`;
+            } else {
+                fullMessage = msg;
+            }
+
+
+            this.container[this.direction == "upToDown" ? "append" : "prepend"](`
                 <div class="chat-post">
                     <span class="time-box" style="font-family: 'grotesksemi'">${timeString}</span>
-                    <span class="msg-box">${msg}</span>
+                    <span class="msg-box">${fullMessage}</span>
                 </div>
             `);
         } else if (type == "info") {
-            this.container[this.direction == "upToDown" ? "append" : "prepend"](` 
+            this.container[this.direction == "upToDown" ? "append" : "prepend"](`
                 <div class="chat-post smi-ad heart">
                     <i style="color: white; font-size: 20px;" class="fa-solid fa-megaphone"></i>
                     <div class="chat-smi-wrap">
-                        <span>Electro</span>
-                        <span>${msg}</span>
+                        <span>Test</span>
+                        <span>${data.msg || data}</span>
                     </div>
                 </div>
             `);
         }
-    
+
         this.container.animate({ scrollTop: this.container.prop("scrollHeight")}, 1000);
     },
     
@@ -210,10 +228,10 @@ async function post(url, data = {}) {
                 $('#chat-me').prop('checked', true);
   
                 post("chatResult", [message]);
-  
+
                 $this.oldMessages.unshift(message);
                 $this.oldMessagesIndex = -1;
-  
+
                 $this.destroy();
   
             } else if (e.which === 38 || e.which === 40) {
@@ -298,16 +316,16 @@ async function post(url, data = {}) {
   window.addEventListener("message", function(event) {
     event.preventDefault();
     const data = event.data;
-  
+
     if (data.act == "build") {
         chat.build();
     } else if (data.act == "clear") {
         chat.clear();
     } else if (data.act == "onMessage") {
-        chat.addMessage(data.msg, data.type);
+        chat.addMessage(data, data.type);
     } else if (data.act == "onComponentDisplaySet") {
         chat.forcedToHide = !data.tog;
-  
+
         if (chat.forcedToHide) chat.hide();
     }
   })

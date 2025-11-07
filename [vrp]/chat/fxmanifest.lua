@@ -11,7 +11,7 @@ client_scripts({
 
 server_scripts({
 	"@vrp/lib/utils.lua",
-	"vrp.lua",
+	"vrp.lua"
 })
 
 files({

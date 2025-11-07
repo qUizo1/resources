@@ -11,31 +11,12 @@ local showServerPrints, chatActive = false, true
 Citizen.CreateThread(function()
     SetTextChatEnabled(false)
 
-    AddEventHandler('chatMessage', function(msg, type)
+    AddEventHandler('chatMessage', function(author, message, prefix, color)
         if chatActive then
-            SendNUIMessage({act = "onMessage", type = type, msg = msg})
+            
+            SendNUIMessage({act = "onMessage", type = "msg", msg = message, author = author, prefix = prefix, color = color})
+            
         end
-    end)
-
-    RegisterCommand("clearchat", function()
-        TriggerEvent("chat:clear")
-    end)
-
-    RegisterCommand("logserver", function()
-        showServerPrints = not showServerPrints
-        print("Server prints [LOGGER]: "..(showServerPrints and "ON" or "OFF"))
-    end)
-
-    RegisterCommand("togchat", function()
-        chatActive = not chatActive
-
-        if not chatActive then
-            TriggerEvent("chat:clear")
-        end
-    end)
-
-    AddEventHandler("chat:clear", function()
-        SendNUIMessage({act = "clear"})
     end)
 
     RegisterNetEvent("printInClient", function(text)

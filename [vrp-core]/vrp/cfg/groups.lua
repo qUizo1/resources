@@ -47,7 +47,17 @@ cfg.groups = {
     "profiler.client",
     "admin.announce",
     "owner.title",
-    "chat.clear"
+    "admin.tickets",
+    "player.list",
+    "player.whitelist",
+    "player.unwhitelist",
+    "player.kick",
+    "player.ban",
+    "player.unban",
+    "player.noclip",
+    "player.coords",
+    "player.tptome",
+    "player.tpto"
   },
   ["admin"] = {
     "admin.tickets",
@@ -59,18 +69,13 @@ cfg.groups = {
     "player.ban",
     "player.unban",
     "player.noclip",
-    "player.custom_emote",
-    "player.custom_model",
-    "player.custom_sound",
-    "player.display_custom",
     "player.coords",
     "player.tptome",
     "player.tpto",
     "admin.title"
   },
   ["god"] = {
-    "admin.god", -- reset survivals/health periodically
-    "mod.title"
+    "admin.god"
   },
   ["user"] = {
     "player.characters", -- characters menu

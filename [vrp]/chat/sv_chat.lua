@@ -25,18 +25,22 @@ AddEventHandler('_chat:messageEntered', function(author, message)
             prefix = "Jucator",
         }
 
-        if message and author then
-                if user:hasPermission("admin.title") then
-                    colorData.color = "ff0000"
-                    colorData.prefix = "Administrator"
-                elseif user:hasPermission("owner.title") then
-                    colorData.color = "b86500"
-                    colorData.prefix = "Fondator"
-                else
-                    colorData.color = "ffde5c"
-                    colorData.prefix = "Jucator"
-                end
+        -- Always check permissions fresh for each message
+        if user then
+            if user:hasPermission("owner.title") then
+                colorData.color = "b86500"
+                colorData.prefix = "Fondator"
+            elseif user:hasPermission("admin.title") then
+                colorData.color = "ff0000"
+                colorData.prefix = "Administrator"
+            else
+                colorData.color = "ffde5c"
+                colorData.prefix = "Jucator"
+            end
         end
+
+        -- Send the message to all clients
+        TriggerClientEvent('chatMessage', -1, author, message, colorData.prefix, colorData.color)
     end
 end)
 
@@ -52,20 +56,6 @@ AddEventHandler('__cfx_internal:commandFallback', function(command)
     end
 
     CancelEvent()
-end)
-
-RegisterCommand("clear", function(src)
-    if src == 0 then
-        return TriggerClientEvent("chat:clear", -1)
-    end
-    
-    local user = vRP.users_by_source[source]
-    if User:hasPermission("clear.chat") then
-        TriggerClientEvent("chat:clear", -1)
-        TriggerClientEvent("chatMessage", -1, {"Clear", "Chatul a fost curatat pentru toti jucatorii.", "Admin: "..GetPlayerName(src).."("..user..")"}, "info")
-    else
-        vRP.EXT.Base.remote._notify(src, "Nu ai acces la aceasta comanda!")
-    end
 end)
 
 RegisterCommand("nc", function(player)
